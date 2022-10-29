@@ -11,27 +11,27 @@ public class Main {
         GuessNumber game = new GuessNumber();
         String response;
 
-        boolean keep_play = true;
+        boolean keepPlay = true;
 
-        while (keep_play) { //this while loop will run until user chose to stop playing.
+        while (keepPlay) { //This while loop will run until user chose to stop playing.
             boolean rightGuess = false, validGame = true;
 
             game.generateNum();
             response =  JOptionPane.showInputDialog(null, "Welcome to Cows & Bulls!\nGuess your number please:" ,"Cows & Bulls Attempt #" +(game.getCount()+1),JOptionPane.INFORMATION_MESSAGE);
 
-            while (!rightGuess) { //this while loop will run until the right number was guessed.
+            while (!rightGuess) { //This while loop will run until the right number was guessed.
                 game.addNewGuess(response);
                 String valid = game.checkValidity();
-                if (response == null || !valid.equals("")) { // enter only for no response or error message.
+                if (response == null || !valid.equals("")) { // Enter only for no response or error message.
                     JOptionPane.showMessageDialog(null, valid + "Exiting current game. Thanks for playing!", "Cows & Bulls - Error", JOptionPane.ERROR_MESSAGE);
-                    rightGuess = true; // to exit current while
+                    rightGuess = true; // To exit current while
                     validGame = false;
                 }
                 else {
-                    String msg = game.compare_guess();
+                    String msg = game.compareGuess();
                     if (msg.equals("success"))
                         rightGuess = true;
-                    else // getting the next guess
+                    else // Getting the next guess
                         response = JOptionPane.showInputDialog(null, msg + "\nGuess your next number please:", "Cows & Bulls Attempt #" +(game.getCount()+2) , JOptionPane.QUESTION_MESSAGE);
                 }
                 game.addCount();
@@ -46,7 +46,7 @@ public class Main {
                 game.resetGame();
             else {
                 JOptionPane.showMessageDialog(null, "Goodbye!","Cows & Bulls",JOptionPane.INFORMATION_MESSAGE);
-                keep_play = false;
+                keepPlay = false;
             }
         }
     }
